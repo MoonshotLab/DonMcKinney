@@ -1,12 +1,24 @@
 import markovify
 import seed
+import pyttsx
 
+# schedule the seed updater
 seed.scheduleDownloader()
 
+# configure the voice
+voice = pyttsx.init()
+voice.setProperty('rate', 170)
+voice.setProperty('voice', 'default')
+
+# open the seed text and create a model
 with open('seed.txt') as f:
-    text = f.read()
+    seed_text = f.read()
+text_model = markovify.Text(seed_text)
 
-text_model = markovify.Text(text)
+# make an idea
+idea = text_model.make_sentence(tries=100)
+voice.say(idea)
 
-sentence = text_model.make_sentence(tries=100)
-print sentence
+# say it
+print idea
+voice.runAndWait()
