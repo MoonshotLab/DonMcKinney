@@ -2,7 +2,6 @@ import seed
 import idea
 import voice
 import gpio
-import time
 
 
 def ideate():
