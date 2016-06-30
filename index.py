@@ -1,6 +1,15 @@
 import seed
 import idea
 import voice
+import gpio
+import time
+
+
+def ideate():
+    big_idea = idea.invent()
+    print(big_idea)
+    voice.say(big_idea)
+
 
 seed.scheduleDownloader()
-voice.say(idea.invent())
+gpio.listen(ideate)

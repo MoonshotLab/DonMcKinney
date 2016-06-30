@@ -31,7 +31,6 @@ I don't have a plan on how this will work yet.
 * [espeak](http://espeak.sourceforge.net/) - `apt-get install espeak`
 * [alsa-tools](http://www.alsa-project.org/main/index.php/Main_Page) - `apt-get install alsa-tools`
 * [alsa-utils](http://www.alsa-project.org/main/index.php/Main_Page) - `apt-get install alsa-utils`
-* [pyttsx](https://github.com/parente/pyttsx) - `pip install pyttsx`
 
 ### Other
 * [markovify](https://github.com/jsvine/markovify) - `pip install markfovify`

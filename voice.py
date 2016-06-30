@@ -1,9 +1,4 @@
-import pyttsx
-
-ptx = pyttsx.init()
-ptx.setProperty('rate', 170)
-ptx.setProperty('voice', 'default')
+import subprocess
 
 def say(idea):
-    ptx.say(idea)
-    ptx.runAndWait()
+    subprocess.call(['espeak', idea])
