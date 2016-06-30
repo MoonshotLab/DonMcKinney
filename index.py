@@ -7,7 +7,7 @@ import time
 
 def ideate():
     big_idea = idea.invent()
-    print(big_idea)
+    print("NEW IDEA: \t" + big_idea)
     voice.say(big_idea)
 
 

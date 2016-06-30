@@ -17,7 +17,7 @@ def scheduleDownloader():
 
 
 def download():
-    print "Downloading new seed"
+    print "downloading new seed..."
 
     response = urllib2.urlopen(url)
     html = response.read()
@@ -26,5 +26,7 @@ def download():
     text_file.write(html)
     text_file.close()
 
+    print "seed downloaded!"
     # recurse, download new file every hour
     threading.Timer(3600, download).start()
+    print "scheduling new seed download for one hour into the future"
