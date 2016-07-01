@@ -35,3 +35,4 @@ I don't have a plan on how this will work yet.
 ### Other
 * [markovify](https://github.com/jsvine/markovify) - `pip install markfovify`
 * [beautiful soup](https://www.crummy.com/software/BeautifulSoup/) - `pip install beautifulsoup4`
+* [feed parser](https://pypi.python.org/pypi/feedparser) - `pip install feedparser`

@@ -19,13 +19,14 @@ def download():
     f = open('seed.txt', 'a')
 
     # fetch new seed from rss feed
+    page = 1
     while True:
         print('retrieving page ' + str(page) + ' from rss feed')
         url = os.environ['RSS_LINK'] + str(page)
 
         feed = feedparser.parse(url)
         if(len(feed['entries'])):
-            content = urllib.urlopen(feed['entries'][0]['link']).read()
+            content = urllib2.urlopen(feed['entries'][0]['link']).read()
             soup = BeautifulSoup(content, 'html.parser')
             entry = soup.select('.entry-content')
             text = entry[0].getText()
