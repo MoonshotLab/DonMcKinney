@@ -1,12 +1,18 @@
+# -*- coding: utf-8 -*-
 import subprocess
 
 def output(idea):
+    # replace characters the printer can't handle
+    idea = idea.replace("’", "'")
+    idea = idea.replace("”", '"')
+    idea = idea.replace("“", '"')
+    
     # create a file and prepare it for writing
     subprocess.call('escposf --i > ./idea.txt', shell=True, stdout=subprocess.PIPE)
     subprocess.call('escposf --a 1 > ./idea.txt', shell=True, stdout=subprocess.PIPE)
     subprocess.call('escposf --r 1 >> ./idea.txt', shell=True, stdout=subprocess.PIPE)
     subprocess.call('escposf --t 3 >> ./idea.txt', shell=True, stdout=subprocess.PIPE)
-    subprocess.call('echo "    NEW IDEA    " >> ./idea.txt', shell=True, stdout=subprocess.PIPE)
+    subprocess.call('echo "BRAD SAYS" >> ./idea.txt', shell=True, stdout=subprocess.PIPE)
     subprocess.call('escposf --t 0 >> ./idea.txt', shell=True, stdout=subprocess.PIPE)
     subprocess.call('escposf --r 0 >> ./idea.txt', shell=True, stdout=subprocess.PIPE)
     subprocess.call('escposf --a 0 >> ./idea.txt', shell=True, stdout=subprocess.PIPE)
