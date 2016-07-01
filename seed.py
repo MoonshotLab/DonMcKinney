@@ -1,15 +1,8 @@
 import threading
+import feedparser
 import os
 import urllib2
-
-
-googleDocId = os.environ['GOOGLE_DOC_ID']
-
-url = ''.join([
-    'https://docs.google.com/document/d/',
-    googleDocId,
-    '/export?format=txt'
-])
+from bs4 import BeautifulSoup
 
 
 def scheduleDownloader():
@@ -17,16 +10,35 @@ def scheduleDownloader():
 
 
 def download():
-    print "downloading new seed..."
+    print 'downloading new seed...'
 
-    response = urllib2.urlopen(url)
-    html = response.read()
+    # overwrite the old seed file
+    f = open('seed.txt', 'w+')
+    f.write('')
+    f.close()
+    f = open('seed.txt', 'a')
 
-    text_file = open('seed.txt', 'w')
-    text_file.write(html)
-    text_file.close()
+    # fetch new seed from rss feed
+    while True:
+        print('retrieving page ' + str(page) + ' from rss feed')
+        url = os.environ['RSS_LINK'] + str(page)
 
-    print "seed downloaded!"
+        feed = feedparser.parse(url)
+        if(len(feed['entries'])):
+            content = urllib.urlopen(feed['entries'][0]['link']).read()
+            soup = BeautifulSoup(content, 'html.parser')
+            entry = soup.select('.entry-content')
+            text = entry[0].getText()
+            f.write(text.encode('utf-8'))
+
+            page+=1
+        else:
+            print('done fetching rss feed')
+            break
+
+    # close the file
+    f.close()
+
     # recurse, download new file every hour
     threading.Timer(3600, download).start()
     print "scheduling new seed download for one hour into the future"
